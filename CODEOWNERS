@@ -1,0 +1,5 @@
+*       @jj-model/maintainers
+docs/   @jj-model/maintainers
+src/    @jj-model/maintainers @jj-model/reviewers
+*.{ts,js}  @jj-model/reviewers
+.env*   @jj-model/maintainers

@@ -1,0 +1,44 @@
+{
+  "daemon": {
+    "name": "jj-model",
+    "label": "com.jjmarte.jj-model",
+    "weight_class": "daemond",
+    "priority": "high",
+    "keep_alive": true,
+    "run_at_load": true,
+    "launch_only_once": false,
+    "throttle_interval": 10,
+    "exit_timeout": 30,
+    "hard_resource_limits": {
+      "memory": 2048,
+      "cpu": 200
+    },
+    "soft_resource_limits": {
+      "memory": 1024,
+      "cpu": 100
+    }
+  },
+  "idevice": {
+    "enabled": true,
+    "weight_class": "daemond",
+    "bridge_port": 4444,
+    "usb_muxd": true,
+    "pairing_required": false,
+    "auto_connect": true
+  },
+  "network": {
+    "direct_mode": true,
+    "weight_class": "daemond",
+    "remove_stub": true,
+    "route_to_kernel": true,
+    "raw_socket_enabled": true,
+    "interfaces": ["en0", "en1", "bridge0"]
+  },
+  "server": {
+    "port": 3333,
+    "host": "0.0.0.0",
+    "ws_port": 3333,
+    "idevice_port": 4444,
+    "proxy_port": 3334
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "jj-model",
+  "version": "1.0.0",
+  "description": "Personal LLM over recall/node memory with Mac environment integration",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "daemon": "node dist/daemon/supervisor.js",
+    "daemon:start": "bash scripts/start-daemon.sh start",
+    "daemon:stop": "bash scripts/start-daemon.sh stop",
+    "daemon:restart": "bash scripts/start-daemon.sh restart",
+    "daemon:status": "bash scripts/start-daemon.sh status",
+    "idevice": "tsx src/idevice/cli.ts",
+    "network": "tsx src/network/kernel/cli.ts",
+    "network:sudo": "sudo npx tsx src/network/kernel/cli.ts",
+    "proxy": "tsx src/proxy/cli.ts",
+    "gguf": "tsx src/gguf/cli.ts",
+    "control": "tsx src/control/cli.ts",
+    "mcp-client": "tsx src/mcp-client/cli.ts",
+    "icloud": "tsx src/icloud/cli.ts",
+    "test": "node --experimental-vm-modules node_modules/.bin/vitest run",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "dotenv": "^16.4.0",
+    "form-data": "^4.0.0",
+    "node-fetch": "^3.3.2",
+    "sql.js": "^1.10.0",
+    "ws": "^8.17.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/ws": "^8.5.0",
+    "eslint": "^8.56.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.3.0"
+  }
+}

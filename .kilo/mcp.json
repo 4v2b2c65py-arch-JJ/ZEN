@@ -1,0 +1,28 @@
+{
+  "servers": {
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/jjmarte/Desktop/JJ-model"],
+      "enabled": true
+    },
+    "memory": {
+      "command": "node",
+      "args": [".dist/mcp/memory-server.js"],
+      "enabled": true
+    },
+    "mac": {
+      "command": "node",
+      "args": [".dist/mcp/mac-server.js"],
+      "enabled": true
+    },
+    "transcription": {
+      "command": "node",
+      "args": [".dist/mcp/transcription-server.js"],
+      "enabled": false
+    }
+  },
+  "routing": {
+    "default_tools": ["filesystem", "memory", "mac"],
+    "recall_always_on": true
+  }
+}

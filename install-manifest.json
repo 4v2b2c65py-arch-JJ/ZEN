@@ -1,0 +1,80 @@
+{
+  "name": "jj-model",
+  "version": "1.0.0",
+  "description": "Personal LLM over recall/node memory with Mac environment integration",
+  "platforms": ["macos", "ios", "android", "windows"],
+  "architectures": {
+    "macos": ["x86_64", "arm64"],
+    "ios": ["arm64"],
+    "android": ["arm64-v8a"],
+    "windows": ["x86", "x64"]
+  },
+  "installers": {
+    "macos": {
+      "pkg": {
+        "machine_wide": "/Applications/jj-model.app",
+        "per_user": "~/Applications/jj-model.app",
+        "cli_intel": "/usr/local/bin/jj-model",
+        "cli_apple_silicon": "/opt/homebrew/bin/jj-model"
+      },
+      "app_bundle": "jj-model.app",
+      "command": "sudo installer -pkg jj-model.pkg -target /"
+    },
+    "ios": {
+      "ipa": {
+        "bundle": "/var/containers/Bundle/Application/<UUID>/jj-model.app",
+        "data": "/var/mobile/Containers/Data/Application/<UUID>/",
+        "app_group": "/var/mobile/Containers/Shared/<UUID>/"
+      },
+      "method": "Xcode / ideviceinstaller / AltStore"
+    },
+    "android": {
+      "apk": {
+        "apk_file": "/data/app/<package>-<suffix>/base.apk",
+        "data": "/data/data/com.jjmodel/",
+        "native_libs": "/data/app/<package>-<suffix>/lib/arm64-v8a/"
+      },
+      "command": "adb install -r jj-model.apk"
+    },
+    "windows": {
+      "msi": {
+        "x64": "C:\\Program Files\\jj-model\\jj-model.exe",
+        "x86": "C:\\Program Files (x86)\\jj-model\\jj-model.exe",
+        "per_user": "%LOCALAPPDATA%\\Programs\\jj-model\\jj-model.exe"
+      },
+      "data": "%APPDATA%\\jj-model\\",
+        "logs": "%LOCALAPPDATA%\\jj-model\\logs\\jj-model.log",
+      "command": "msiexec /i jj-model.msi /qn ALLUSERS=1"
+    }
+  },
+  "data_dirs": {
+    "macos_logs": "~/Library/Logs/jj-model/jj-model.log",
+    "macos_app_support": "~/Library/Application Support/jj-model/",
+    "macos_icloud": "~/Library/Mobile Documents/com~apple~CloudDocs/jj-model/expansion-packages",
+    "windows_logs": "%LOCALAPPDATA%\\jj-model\\logs\\jj-model.log"
+  },
+  "ports": {
+    "main_api": 3333,
+    "cross_comm_p2p": 4445,
+    "model_proxy": 3334
+  },
+  "weight_class": "daemond",
+  "log_format": "ndjson",
+  "log_schema": {
+    "timestamp": "ISO-8601 UTC",
+    "level": "INFO|WARN|ERROR|DEBUG",
+    "service": "string",
+    "service.version": "string",
+    "deployment.environment": "string",
+    "message": "string"
+  },
+  "build": {
+    "backend": "tsc -> dist/",
+    "frontend": "vite build -> frontend/dist/",
+    "bundle_tool": "pkg or nexe",
+    "macos_pkg_tool": "productbuild / pkgbuild",
+    "windows_msi_tool": "WiX Toolset (candle -arch x64)",
+    "notarization": "xcrun notarytool submit",
+    "code_sign": "Required for macOS / Windows"
+  }
+}

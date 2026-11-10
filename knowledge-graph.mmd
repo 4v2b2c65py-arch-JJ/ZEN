@@ -1,0 +1,84 @@
+```mermaid
+graph TB
+    %% External
+    User((User)):::external
+    Browser[Browser / JCloud Vue Frontend]:::frontend
+    iOS[iPhone / iPad]:::ios
+    macOS[(macOS)]:::system
+
+    %% Frontend
+    Login[Login / Auth]:::vue
+    Chat[Chat Interface]:::vue
+    WebSearch[Web Search Panel]:::vue
+    Sidebar[Conversation Sidebar]:::vue
+
+    %% Backend Core
+    API[WebSocket API :3333]:::app
+    Proxy[Model Proxy :3334]:::app
+    LLM[LLM Providers / Ollama / OpenAI]:::llm
+    Mem[Vector Memory SQLite]:::data
+    Mac[macOS Integration]:::app
+
+    %% New Systems
+    Cross[Cross-Comm P2P :4445]:::app
+    Auto[Auto-Work Engine]:::app
+    Meta[MetaBrain Scanner]:::app
+    Tools[Tool Registry]:::app
+    Broad[BroadSpectrum Orchestrator]:::app
+    ICloud[iCloud Expansion]:::app
+    GGUF[GGUF Model Manager]:::app
+    Control[Control Tagger]:::app
+    MCPc[MCP Client]:::app
+    Keybind[KeyBind Manager]:::app
+    Periph[Peripheral Manager]:::app
+    Shell[Shell Vectorial]:::app
+    Agent[Agent Roles + Spawn Control]:::app
+
+    %% Data
+    DB[(SQLite recall.db)]:::data
+    Models[(models/gguf)]:::data
+    IC[(iCloud Drive packages)]:::data
+
+    %% Connections
+    Browser <-->|WS :5173| API
+    Browser <-->|WS :3334| Proxy
+    API --> LLM
+    API --> Mem
+    API --> Mac
+    Proxy --> LLM
+    Cross <-->|P2P| Cross
+    Cross --> Mem
+    Auto --> Mem
+    Auto --> Cross
+    Meta --> Mem
+    Tools -->|execute| Mac
+    Tools -->|execute| Shell
+    Broad -->|orchestrate| Tools
+    Broad -->|orchestrate| Meta
+    Broad -->|orchestrate| Keybind
+    Broad -->|orchestrate| Periph
+    Broad -->|orchestrate| Shell
+    Broad -->|orchestrate| Agent
+    ICloud <-->|sync| Broad
+    GGUF <-->|download| Proxy
+    GGUF --> Models
+    Control -->|scan| src
+    MCPc -->|connect| ext
+    Keybind -->|trigger| Mem
+    Keybind -->|broadcast| Cross
+    Periph -->|capture| macOS
+    Periph -->|broadcast| Cross
+    Shell -->|exec| macOS
+    Agent -->|spawn| Agent
+    iOS <-->|libimobiledevice| Cross
+    macOS <-->|AppleScript| Mac
+
+    classDef external fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef frontend fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef ios fill:#bfb,stroke:#333,stroke-width:2px;
+    classDef system fill:#fbb,stroke:#333,stroke-width:2px;
+    classDef vue fill:#4fc08d,stroke:#333,stroke-width:2px;
+    classDef app fill:#fbb,stroke:#333,stroke-width:2px;
+    classDef llm fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef data fill:#ffb,stroke:#333,stroke-width:2px;
+```
