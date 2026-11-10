@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "framework": "vite",
+  "routes": [
+    { "src": "/assets/(.*)", "headers": { "cache-control": "public, max-age=31536000, immutable" } },
+    { "src": "/(.*)", "dest": "/frontend/dist/index.html" }
+  ]
+}

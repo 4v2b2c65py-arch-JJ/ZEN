@@ -14,3 +14,4 @@ coverage/
 *.crt
 npm-debug.log*
 .yarn-integrity
+.vercel

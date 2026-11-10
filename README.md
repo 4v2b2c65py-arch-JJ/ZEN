@@ -2,6 +2,12 @@
 
 Personal LLM over recall/node memory with full macOS environment integration, cross-device sync, WebSocket API, and autonomous agent capabilities.
 
+## Live Demo
+
+Frontend: https://jj-model.vercel.app (Vercel)
+
+Backend (WebSocket API): runs locally on `ws://localhost:3333` — deploy separately (VPS / Render / Railway) for remote access.
+
 ## Quick Start
 
 ```bash
